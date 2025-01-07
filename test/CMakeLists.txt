@@ -29,9 +29,18 @@ add_executable(test_coffee
         ${COFFEE_SRC}
         test-coffee.cpp)
 
+add_executable(test_coffee_order
+        ${COFFEE_HEADERS}
+        ${COFFEE_SRC}
+        ${HEADER_DIR}/CoffeeOrder.h
+        ${SRC_DIR}/CoffeeOrder.cpp
+        test-coffee-order.cpp)
+
 target_link_libraries(test_coffee PRIVATE Catch2::Catch2WithMain)
+target_link_libraries(test_coffee_order PRIVATE Catch2::Catch2WithMain)
 
 include(CTest)
 include(Catch)
 
 catch_discover_tests(test_coffee)
+catch_discover_tests(test_coffee_order)
