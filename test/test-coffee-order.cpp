@@ -19,6 +19,7 @@ SCENARIO("Testing the CoffeeOrder", "[CoffeeOrderTest]") {
             }AND_THEN("The volume of coffee sold should be zero") {
                 REQUIRE(order.getTotalVolumeSold() == 0);
             }
+            order.displayReceipt();
         }AND_WHEN("Items (coffee) are added to it") {
             THEN("The order should hold the information") {
                 order.add(std::make_shared<SmallCoffee>(), 1);

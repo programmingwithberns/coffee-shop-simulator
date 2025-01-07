@@ -26,7 +26,7 @@ if [ $? -ne 0 ]; then
 fi
 
 echo -e "${GREEN}Running make...${NC}"
-make
+make -j8
 
 if [ $? -ne 0 ]; then
     echo -e "${RED}Build process failed. Exiting.${NC}"
