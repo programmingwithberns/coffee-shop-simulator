@@ -1,13 +1,9 @@
-//
-// Created by Longho Bernard on 2024-11-18.
-//
-
 #ifndef COFFEESHOPPROGRAM_MEDIUMCOFFEE_H
 #define COFFEESHOPPROGRAM_MEDIUMCOFFEE_H
 
 #include "Coffee.h"
 
-class MediumCoffee : public Coffee {
+class MediumCoffee final : public Coffee {
 
 public:
     MediumCoffee();

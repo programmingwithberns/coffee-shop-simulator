@@ -1,9 +1,3 @@
-//
-// Created by Longho Bernard on 2024-12-19.
-//
-
-
-
 #include "SmallCoffee.h"
 SmallCoffee::SmallCoffee()
 : Coffee(CoffeeSize::SMALL, 1.75, 9){

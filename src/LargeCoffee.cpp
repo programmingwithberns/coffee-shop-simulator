@@ -1,7 +1,3 @@
-//
-// Created by Longho Bernard on 2024-11-18.
-//
-
 #include "LargeCoffee.h"
 
 LargeCoffee::LargeCoffee()

@@ -1,7 +1,3 @@
-//
-// Created by Longho Bernard on 2024-12-19.
-//
-
 #ifndef COFFEE_H
 #define COFFEE_H
 
