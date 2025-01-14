@@ -10,7 +10,12 @@
 ## Steps
 1. Clone the repository
 ```shell
-git clone https://github.com/blongho/coffee-shop-simulation.git coffee-shop
+git clone https://github.com/programmingwithberns/coffee-shop-simulator.git coffee-shop
+```
+
+If you are lazy like me, just do or follow steps 2 - 4 below 
+```shell 
+cd coffee-shop && ./run.sh # for unix systems or # cd coffee-shop && ./run.cmd # for windows
 ```
 
 2. Move into the cloned repository
@@ -35,4 +40,4 @@ cmake .. && make
 4. Run the tests
 ```shell 
 ctest -V # -V for verbosity
-``` 
+```

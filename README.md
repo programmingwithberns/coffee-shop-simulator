@@ -23,4 +23,4 @@ Pay attention to the user interface. Try to minimize the number
 of mouse clicks and display output neatly.
 
 ## How to run the project
-See [INSTRUCTIONS](INSTRUCTIONS.MD)
+See [INSTRUCTIONS](INSTRUCTIONS.md)
