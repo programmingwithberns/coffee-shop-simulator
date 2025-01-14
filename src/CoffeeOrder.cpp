@@ -1,4 +1,5 @@
 #include "CoffeeOrder.h"
+#include <algorithm>
 
 [[nodiscard]] std::size_t CoffeeOrder::coffeeSoldBySize(CoffeeSize size)  const{
     std::size_t count{0};
