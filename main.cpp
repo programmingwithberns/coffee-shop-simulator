@@ -1,6 +1,8 @@
 #include <iostream>
 
+#include "CoffeeShop.h"
 int main() {
-    std::cout << "Hello CoffeeShop\n";
+    const CoffeeShop coffeeShop;
+    coffeeShop.run();
     return 0;
 }

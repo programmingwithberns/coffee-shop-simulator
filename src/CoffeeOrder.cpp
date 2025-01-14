@@ -44,7 +44,6 @@
 }
 
 void CoffeeOrder::add(const CoffeePtr &coffee, std::size_t quantity) {
-    std::cout << "Adding a coffee " << std::endl;
     for (std::size_t i = 0; i < quantity; ++i) {
         coffees.push_back(coffee);
     }
