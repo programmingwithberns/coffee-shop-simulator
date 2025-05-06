@@ -1,14 +1,9 @@
 #include "CoffeeOrder.h"
 #include <algorithm>
+#include <numeric> // std::accumulate
 
 [[nodiscard]] std::size_t CoffeeOrder::coffeeSoldBySize(CoffeeSize size)  const{
-    std::size_t count{0};
-    for (const auto& cup : coffees) {
-        if (cup->getSize() == size) {
-            count+=1;
-        }
-    }
-    return count;
+    return std::count_if(coffees.begin(), coffees.end(), [&](const auto &cptr){ return cptr->getSize() == size;});
 }
 
 [[nodiscard]] std::size_t CoffeeOrder::getNumberOfCupsSold() const {
@@ -28,20 +23,12 @@
 }
 
 [[nodiscard]] double CoffeeOrder::getTotalRevenue() const {
-    double revenue{0.0};
 
-    for (const auto& cup : coffees) {
-        revenue += cup->getPrice();
-    }
-    return revenue;
+    return std::accumulate(coffees.begin(), coffees.end(),0.0, [&](double revenue, const auto &cptr){return revenue + cptr->getPrice();});
 }
 
 [[nodiscard]] double CoffeeOrder::getTotalVolumeSold() const {
-    double volume{0.0};
-    for (const auto& cup : coffees) {
-        volume += cup->getVolume();
-    }
-    return volume;
+    return std::accumulate(coffees.begin(), coffees.end(),0.0, [&](double volume, const auto &cptr){return volume + cptr->getVolume();});
 }
 
 void CoffeeOrder::add(const CoffeePtr &coffee, std::size_t quantity) {
@@ -50,34 +37,38 @@ void CoffeeOrder::add(const CoffeePtr &coffee, std::size_t quantity) {
     }
 }
 
+std::vector<std::shared_ptr<Coffee>>::const_iterator CoffeeOrder::isCoffeeTypePresent(const CoffeeSize &coffeeSize)  const {
+    return std::find_if(coffees.begin(), coffees.end(),[&](const auto &coffee) {
+        return coffee->getSize() == coffeeSize;
+    });
+}
 void CoffeeOrder::displayReceipt() const {
     if (coffees.empty()) {
         std::cout << "No orders made. No receipt to print!\n";
     } else {
         std::cout << "\n--- Receipt ---\n";
-        const auto smallCupCoffee = std::find_if(coffees.begin(), coffees.end(),
-                                                 [](const CoffeePtr &coffee) {
-                                                     return coffee->getSize() == CoffeeSize::SMALL;
-                                                 });
-        if(smallCupCoffee != coffees.end()){
+
+        const auto smallCupCoffeePresence = isCoffeeTypePresent(CoffeeSize::SMALL);
+
+        if(smallCupCoffeePresence != coffees.end()){
             const auto smallCupsSold = getNumberOfSmallCupsSold();
             std::cout << std::setw(2) << std::right <<smallCupsSold << " ";
-            smallCupCoffee->get()->display();
+            smallCupCoffeePresence->get()->display();
         }
-        const auto mediumCupCoffee = std::find_if(coffees.begin(), coffees.end(),[](const CoffeePtr &coffee){return coffee->getSize() ==CoffeeSize::MEDIUM;} );
+        const auto mediumCupCoffeePresence = isCoffeeTypePresent(CoffeeSize::MEDIUM);
 
-        if(mediumCupCoffee != coffees.end()){
+        if(mediumCupCoffeePresence != coffees.end()){
             auto mediumCups = getNumberOfMediumCupsSold();
             std::cout << std::setw(2) << std::right<< mediumCups << " ";
-            mediumCupCoffee->get()->display();
+            mediumCupCoffeePresence->get()->display();
         }
 
-        const auto largeCupCoffee = std::find_if(coffees.begin(), coffees.end(),[](const CoffeePtr &coffee){return coffee->getSize() ==CoffeeSize::LARGE;} );
+        const auto largeCupCoffeePresence = isCoffeeTypePresent(CoffeeSize::LARGE);
 
-        if(largeCupCoffee != coffees.end()){
+        if(largeCupCoffeePresence != coffees.end()){
             auto largeCups = getNumberOfLargeCupsSold();
             std::cout << std::setw(2) << std::right << largeCups << " ";
-            largeCupCoffee->get()->display();
+            largeCupCoffeePresence->get()->display();
         }
         std::cout << "Total Amount: $" << getTotalRevenue() << "\n";
         std::cout << "------- END OF RECEIPT ------" << "\n";

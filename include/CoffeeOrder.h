@@ -14,6 +14,7 @@ class CoffeeOrder final {
 
     [[nodiscard]] std::size_t coffeeSoldBySize(CoffeeSize size) const;
 
+    std::vector<std::shared_ptr<Coffee>>::const_iterator isCoffeeTypePresent(const CoffeeSize &coffeeSize) const;
 public:
     [[nodiscard]] std::size_t getNumberOfCupsSold() const;
     [[nodiscard]] std::size_t getNumberOfLargeCupsSold() const;
@@ -24,7 +25,5 @@ public:
     void add(const CoffeePtr& coffee, std::size_t quantity);
     void displayReceipt() const;
 };
-
-
 
 #endif //COFFEEORDER_H

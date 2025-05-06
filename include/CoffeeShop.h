@@ -3,7 +3,7 @@
 #include "CoffeeOrder.h"
 #include <iostream>
 #include <set>
-class CoffeeShop {
+class CoffeeShop final {
 private:
   std::unique_ptr<CoffeeOrder> coffeeOrder = nullptr;
 
